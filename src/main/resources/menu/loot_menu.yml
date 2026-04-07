@@ -1,0 +1,27 @@
+
+id: default_loot_menu
+
+title: "<black>Loot"
+size: 45
+
+loot-slots:
+  - '9-35'
+
+Items:
+  orange_decoration:
+    material: orange_stained_glass_pane
+    slots:
+      - '0'
+      - '8'
+      - '36'
+      - '44'
+    display_name: ""
+
+  black_decoration:
+    material: black_stained_glass_pane
+    slots:
+      - '1-7'
+      - '37-43'
+    display_name: ""
+
+

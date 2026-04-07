@@ -1,29 +1,82 @@
 id: default
 
-type: LIGHT_GRAY_SHULKER_BOX
-durability: 50
 
-lootAmount: 2-5
-spawnChance: 50
+settings:
 
-explosion:
+  type: LIGHT_GRAY_SHULKER_BOX
+  durability: 50
+
+  lootAmount: 2-5
+  # Редкость этого типа
+  spawnChance: 50
+
+  loot_delivery: DROP # DROP | GUI | FLYING
+  delivery_gui: default_loot_menu # используйте id меню который хотите открывать если `loot_delivery` стоит на GUI
+
+  # remove-after с этой настройкой можно настроить что будет после того как прочность шалкера полностью сломается.
+  # Если тип DROP, то спустя N время пропадёт шалкер и выбросит на землю лут.
+  # Если тип GUI, то гуи можно будет открывать на протяжении N времени и тогда шалкер пропадёт
+  # Если тип FLYING, дроп будет вылетать адаптируясь под N время
+  # Ставьте 0 если вам не нужен обратный отсчёт до удаления
+  remove-after: 0
+
+
+  # В голограммах нет поддержки Mini Message, так как DecentHolograms использует свою колоризацию.
+  # Ознакомится тут: https://wiki.decentholograms.eu/general/format-and-colors/colors/
+  hologram:
+    enable: true
+    x: 0.5
+    y: 2.0
+    z: 0.5
+    lines:
+      - '&7Обычный'
+      - '&fУ шалкера осталось {blocks_left} прочности.'
+
+  hologram-remove:
+    enable: true
+    x: 0.5
+    y: 2.0
+    z: 0.5
+    lines:
+      - '&fШалкер пропадёт через {time_left} секунд.'
+
+
+flying-drop-particle:
+  enabled: true
+  visual-fire: false
+  sound: block_lava_extinguish
+  pitch: 1.0
+  volume: 1.0
+  particle: SOUL_FIRE_FLAME
+  amount: 1
+  offset-x: 0.0
+  offset-y: 3.0
+  offset-z: 0.0
+  min-y: 6.0
+  max-y: 10.0
+  min-speed: 0.3
+  max-speed: 1.0
+
+mask:
   enable: true
-  damage: 4
+  items:
+    m1:
+      material: COBWEB
+      enchanted: true
+      name: "<#0EC8E2><obf>|||||||||"
+    m2:
+      material: PHANTOM_MEMBRANE
+      enchanted: true
+      name: "<#0EC8E2><obf>|||||||||"
 
-hologram:
-  enable: true
-  x: 0.5
-  y: 2.0
-  z: 0.5
+on_spawn:
+  - '[explosion] 4 false false' # 4 это урон. Первый false/true ставить огонь? Второй false/true ломать блоки?
 
-holo:
-  - '&7Обычный'
-  - '&fУ шалкера осталось {blocks_left} прочности.'
+on_break:
+  - '[actionbar] <white>У шалкера осталось <gray>{blocks_left} <white>прочности.'
+  - check1:
+      if: "{blocks_left} == 10"
+      then:
+        - '[explosion] 4 false false'
 
-actionbar:
-  enable: true
-  msg: '&fУ шалкера осталось {blocks_left} прочности.'
-
-Items: {}
-
-Chances: {}
+on_despawn: { }

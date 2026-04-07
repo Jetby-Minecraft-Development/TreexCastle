@@ -6,7 +6,7 @@
 
     <groupId>me.jetby</groupId>
     <artifactId>TreexCastle</artifactId>
-    <version>2.2</version>
+    <version>3.0</version>
     <packaging>jar</packaging>
 
     <name>TreexCastle</name>
@@ -56,11 +56,6 @@
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
-            <id>Jodexindustries-releases</id>
-            <name>JodexIndustries Repo</name>
-            <url>https://repo.jodex.xyz/releases</url>
-        </repository>
-        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -68,24 +63,33 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <repository>
+            <id>jetby-repo</id>
+            <url>http://api.jetby.space/</url>
+        </repository>
+        <repository>
+            <id>codemc</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.jodexindustries.jguiwrapper</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.0.4</version>
+            <groupId>me.jetby</groupId>
+            <artifactId>Libb</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.decentsoftware-eu</groupId>
             <artifactId>decentholograms</artifactId>
-            <version>2.7.11</version>
+            <version>2.9.9</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.17-R0.1-SNAPSHOT</version>
+            <version>1.20-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

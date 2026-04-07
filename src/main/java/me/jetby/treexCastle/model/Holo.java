@@ -1,0 +1,12 @@
+package me.jetby.treexCastle.model;
+
+import java.util.List;
+
+public record Holo(
+        boolean enable,
+        double holoX,
+        double holoY,
+        double holoZ,
+        List<String> lines
+) {
+}

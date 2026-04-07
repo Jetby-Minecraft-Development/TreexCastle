@@ -1,6 +1,6 @@
-package me.jetby.treexCastle.tools;
+package me.jetby.treexCastle.util;
 
-import me.jetby.treexCastle.Main;
+import me.jetby.treexCastle.TreexCastle;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -9,7 +9,8 @@ public class LocationHandler {
         return String.format("%d;%d;%d;%s", loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), loc.getWorld().getName());
 
     }
-    public static Location deserialize(String str, Main plugin) {
+
+    public static Location deserialize(String str, TreexCastle plugin) {
         if (str == null || str.isEmpty() || str.equals("0;0;0;world")) {
             return null;
         }

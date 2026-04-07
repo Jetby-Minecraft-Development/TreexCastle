@@ -1,16 +1,16 @@
-package me.jetby.treexCastle.tools;
+package me.jetby.treexCastle.util;
 
 
-import me.jetby.treexCastle.Main;
-import me.jetby.treexCastle.configuration.Config;
+import me.jetby.treexCastle.TreexCastle;
+import me.jetby.treexCastle.configuration.ConfigConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class FormatTime {
-    private final Config config;
+    private final ConfigConfiguration config;
 
-    public FormatTime(Main plugin) {
+    public FormatTime(TreexCastle plugin) {
         this.config = plugin.getCfg();
     }
 

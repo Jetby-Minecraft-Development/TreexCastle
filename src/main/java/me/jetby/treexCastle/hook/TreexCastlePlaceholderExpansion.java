@@ -1,14 +1,15 @@
-package me.jetby.treexCastle.tools;
+package me.jetby.treexCastle.hook;
 
 import lombok.RequiredArgsConstructor;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.jetby.treexCastle.Main;
+import me.jetby.treexCastle.TreexCastle;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 @RequiredArgsConstructor
-public class CastlePlaceholders extends PlaceholderExpansion {
-    private final Main plugin;
+public class TreexCastlePlaceholderExpansion extends PlaceholderExpansion {
+    private final TreexCastle plugin;
+
     @Override
     public @NotNull String getIdentifier() {
         return "treexcastle";
@@ -16,12 +17,12 @@ public class CastlePlaceholders extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "TreexStudio";
+        return "";
     }
 
     @Override
     public @NotNull String getVersion() {
-        return "2.0";
+        return plugin.getVersion();
     }
 
     @Override
@@ -31,10 +32,10 @@ public class CastlePlaceholders extends PlaceholderExpansion {
             return String.valueOf(plugin.getShulkerManager().getTimeToStart());
         }
         if (identifier.equalsIgnoreCase("time_to_start_string")) {
-            return (plugin.getFormatTime( ).stringFormat(plugin.getShulkerManager().getTimeToStart()));
+            return (plugin.getFormatTime().stringFormat(plugin.getShulkerManager().getTimeToStart()));
         }
         if (identifier.equalsIgnoreCase("time_to_start_format")) {
-            return (plugin.getFormatTime( ).stringFormat(plugin.getShulkerManager().getTimeToStart()));
+            return (plugin.getFormatTime().stringFormat(plugin.getShulkerManager().getTimeToStart()));
         }
         return identifier;
     }

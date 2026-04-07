@@ -1,7 +1,6 @@
 package me.jetby.treexCastle.handler;
 
-import lombok.RequiredArgsConstructor;
-import me.jetby.treexCastle.Main;
+import me.jetby.treexCastle.TreexCastle;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,17 +10,18 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
-import static me.jetby.treexCastle.Main.NAMESPACED_KEY;
+import static me.jetby.treexCastle.TreexCastle.WAND_KEY;
 
 
-@RequiredArgsConstructor
-public class Wand implements Listener {
-    private final Random RANDOM = new Random();
+public record WandHandler(TreexCastle plugin) implements Listener {
 
-    private final Main plugin;
+    public WandHandler(@NotNull TreexCastle plugin) {
+        this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
+    }
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
@@ -33,7 +33,7 @@ public class Wand implements Listener {
 
         Location location = block.getLocation();
 
-        if (itemInHand.hasItemMeta() && itemInHand.getItemMeta().getPersistentDataContainer().has(NAMESPACED_KEY, PersistentDataType.STRING)) {
+        if (itemInHand.hasItemMeta() && itemInHand.getItemMeta().getPersistentDataContainer().has(WAND_KEY, PersistentDataType.STRING)) {
             e.setCancelled(true);
             if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
                 boolean removed = plugin.getLocations().removeLocation(location);
@@ -53,7 +53,7 @@ public class Wand implements Listener {
                         return;
                     }
 
-                    plugin.getTypes().getShulkers().get(type).create(location);
+                    plugin.getTypes().getShulkers().get(type).spawn(location);
                 }
 
             }

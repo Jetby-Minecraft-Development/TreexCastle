@@ -3,18 +3,18 @@ package me.jetby.treexCastle.configuration;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import me.jetby.treexCastle.Main;
-import me.jetby.treexCastle.tools.Hex;
+import me.jetby.treexCastle.TreexCastle;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Getter @Setter
-public class Config {
+@Getter
+@Setter
+public class ConfigConfiguration {
 
-    private final Main plugin;
+    private final TreexCastle plugin;
     private final FileConfiguration configuration;
 
     private String license;
@@ -53,7 +53,7 @@ public class Config {
         license = configuration.getString("license.key", "NONE");
         update = configuration.getBoolean("update.enable", false);
         time = configuration.getInt("update.time", 1800);
-        msg = Hex.colorize(configuration.getStringList("update.msg"));
+        msg = configuration.getStringList("update.msg");
 
         bStats = configuration.getBoolean("bStats", true);
         updateChecker = configuration.getBoolean("update-checker", true);
@@ -61,9 +61,7 @@ public class Config {
 
     private List<String> getOrDefaultList(FileConfiguration config, String path, List<String> defaultValue) {
         List<String> list = config.getStringList(path);
-        defaultValue.replaceAll(Hex::colorize);
-        list.replaceAll(Hex::colorize);
-        return list.isEmpty() ? defaultValue : list;
+        return config.getStringList(path).isEmpty() ? defaultValue : list;
     }
 
 }

@@ -1,11 +1,12 @@
 name: TreexCastle
-version: '2.2'
-main: me.jetby.treexCastle.Main
-api-version: '1.16'
+version: '3.0'
+main: me.jetby.treexCastle.TreexCastle
+api-version: '1.20'
 load: POSTWORLD
 authors: [ MrJetby ]
 website: https://dsc.gg/treexstudio
 depend:
+  - Libb
   - DecentHolograms
 softdepend:
   - PlaceholderAPI

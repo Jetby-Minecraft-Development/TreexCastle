@@ -1,4 +1,4 @@
-package me.jetby.treexCastle.tools;
+package me.jetby.treexCastle.util;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
@@ -9,24 +9,25 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 @UtilityClass
-public class Holo {
+public class HoloUtil {
 
     public void create(@NotNull List<String> lines,
-                              @NotNull Location location,
-                              @NotNull String name){
+                       @NotNull Location location,
+                       @NotNull String name) {
 
         Hologram hologram = DHAPI.getHologram(name);
-        if(hologram == null){
+        if (hologram == null) {
             DHAPI.createHologram(name, location, lines);
         }
     }
+
     public void update(@NotNull List<String> lines,
-                              @NotNull Location location,
-                              @NotNull String name){
+                       @NotNull Location location,
+                       @NotNull String name) {
 
         Hologram hologram = DHAPI.getHologram(name);
-        if(hologram != null){
-            if(!hologram.getLocation().equals(location)){
+        if (hologram != null) {
+            if (!hologram.getLocation().equals(location)) {
                 hologram.setLocation(location);
                 hologram.realignLines();
             }
@@ -34,11 +35,10 @@ public class Holo {
         }
     }
 
-
-    public void remove(@NotNull String name){
+    public void remove(@NotNull String name) {
 
         Hologram hologram = DHAPI.getHologram(name);
-        if(hologram != null)
+        if (hologram != null)
             DHAPI.removeHologram(name);
     }
 }

@@ -1,9 +1,9 @@
 package me.jetby.treexCastle.gui;
 
-import com.jodexindustries.jguiwrapper.api.item.ItemWrapper;
-import com.jodexindustries.jguiwrapper.gui.advanced.AdvancedGui;
-import me.jetby.treexCastle.Main;
-import me.jetby.treexCastle.configuration.Items;
+import me.jetby.libb.gui.AdvancedGui;
+import me.jetby.libb.gui.item.ItemWrapper;
+import me.jetby.treexCastle.TreexCastle;
+import me.jetby.treexCastle.configuration.ItemsConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -12,40 +12,40 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
 
-import static me.jetby.treexCastle.gui.MainMenu.CHANCE;
+import static me.jetby.treexCastle.gui.MainGui.CHANCE;
 
-public class ItemEditor extends AdvancedGui {
+public class ItemGui extends AdvancedGui {
 
-    private final Items items;
+    private final ItemsConfiguration items;
 
-    public ItemEditor(Player player, String inv, String type, Main plugin) {
-        super("Редактор предметов");
+    public ItemGui(Player player, String inv, String type, TreexCastle plugin) {
+        super("Редактор предметов", 54);
         this.items = plugin.getItems();
 
 
-        setCancelEmptySlots(false);
+        lockEmptySlots(false);
         onDrag(inventoryDragEvent -> {
             inventoryDragEvent.setCancelled(false);
         });
 
-        List<Items.ItemsData> map = items.getData().get(type);
-        for (Items.ItemsData itemData : map) {
+        List<ItemsConfiguration.ItemsData> map = items.getData().get(type);
+        for (ItemsConfiguration.ItemsData itemData : map) {
             if (!itemData.inv().equals(inv)) continue;
             if (itemData.itemStack() == null) continue;
-            registerItem(itemData.slot().toString()+"-"+itemData.inv(), builder -> {
-                builder.slots(itemData.slot());
-                builder.defaultItem(new ItemWrapper(itemData.itemStack()));
-                builder.defaultClickHandler((event, controller) -> {
-                    event.setCancelled(false);
-                });
+            ItemWrapper wrapper = new ItemWrapper(itemData.itemStack());
+            wrapper.slots(itemData.slot());
+            wrapper.onClick(event -> {
+                event.setCancelled(false);
             });
+            setItem(itemData.slot().toString() + "-" + itemData.inv(),
+                    wrapper);
         }
 
         onClose(event -> {
             saveInv(event.getInventory(), type, inv);
 
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                new InvEditor(plugin, player, plugin.getTypes().getShulkers().get(type)).open(player);
+                new InvGui(plugin, player, plugin.getTypes().getShulkers().get(type)).open(player);
             }, 1L);
         });
     }
