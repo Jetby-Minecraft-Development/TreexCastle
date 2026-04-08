@@ -19,7 +19,7 @@ public class ItemGui extends AdvancedGui {
     private final ItemsConfiguration items;
 
     public ItemGui(Player player, String inv, String type, TreexCastle plugin) {
-        super("Редактор предметов", 54);
+        super(plugin.getFormattedMessage("gui.items.title"), 54);
         this.items = plugin.getItems();
 
 

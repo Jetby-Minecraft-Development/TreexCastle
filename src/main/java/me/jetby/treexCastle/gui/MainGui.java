@@ -16,7 +16,7 @@ public class MainGui extends AdvancedGui {
 
     public MainGui(TreexCastle plugin) {
 
-        super("TreexCastle", 54);
+        super(plugin.getFormattedMessage("gui.main.title"), 54);
 
         lockEmptySlots(true);
 
@@ -26,14 +26,8 @@ public class MainGui extends AdvancedGui {
             int finalSlot = slot;
 
             setItem(type, ItemWrapper.builder(shulker.material())
-                    .displayName(r("<!i><#FB430A><bold>⭐</bold> <white>Шалкер: <yellow>" + type))
-                    .lore(List.of(
-                                    r("<!i><#FB430A><st>=                                   ="),
-                                    r(""),
-                                    r("<!i><#FB430A><b>▶</b> <white>Нажмите, чтобы настроить предметы"),
-                                    r(""),
-                                    r("<!i><#FB430A><st>=                                   =")
-                            )
+                    .displayName(plugin.getFormattedMessage("gui.main.type_button.display_name", "{type}", type))
+                    .lore(plugin.getFormattedMessageList("gui.main.type_button.lore")
                     )
                     .slots(finalSlot)
                     .onClick(event -> {

@@ -5,7 +5,6 @@ import me.jetby.libb.Libb;
 import me.jetby.libb.action.ActionRegistry;
 import me.jetby.libb.plugin.LibbPlugin;
 import me.jetby.treexCastle.configuration.*;
-import me.jetby.treexCastle.executor.ShulkerCommand;
 import me.jetby.treexCastle.gui.MainGui;
 import me.jetby.treexCastle.handler.WandHandler;
 import me.jetby.treexCastle.hook.TreexCastlePlaceholderExpansion;
@@ -127,7 +126,7 @@ public final class TreexCastle extends LibbPlugin {
     }
 
     public static Component r(String string) {
-        return Libb.MINI_MESSAGE.deserialize(string);
+        return Libb.MINI_MESSAGE.deserialize("<!i>"+string);
     }
 
     private FileConfiguration messages;

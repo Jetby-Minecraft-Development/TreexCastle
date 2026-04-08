@@ -19,7 +19,7 @@ public class InvGui extends AdvancedGui {
 
 
     public InvGui(TreexCastle plugin, Player player, ShulkerType shulker) {
-        super("Выбор инвентаря", 54);
+        super(plugin.getFormattedMessage("gui.inv.title"), 54);
 
         lockEmptySlots(true);
         String id = shulker.id();
@@ -38,15 +38,8 @@ public class InvGui extends AdvancedGui {
             int currentSlot = slot;
             setItem(inv + "_" + slot, ItemWrapper.builder(Material.CHEST)
                     .slots(currentSlot)
-                    .displayName(r("<#FB430A><bold>⭐ <white>Инвентарь: <yellow>" + inv))
-                    .lore(List.of(
-                            r("<gold><bold><st>=                                   ="),
-                            r(""),
-                            r(" <gold><bold>ЛКМ <gray>- <white>Настроить предметы "),
-                            r(" <gold><bold>ПКМ <gray>- <white>Настроить шансы предметов "),
-                            r(""),
-                            r("<gold><bold><st>=                                   =")
-                    ))
+                    .displayName(plugin.getFormattedMessage("gui.inv.inv_button.display_name", "{inv}", inv))
+                    .lore(plugin.getFormattedMessageList("gui.inv.inv_button.lore"))
                     .onClick(event -> {
                         event.setCancelled(true);
 
@@ -65,7 +58,7 @@ public class InvGui extends AdvancedGui {
 
         setItem("add_button", ItemWrapper.builder(Material.EMERALD)
                 .slots(53)
-                .displayName(r("<green>[+] Добавить новый инвентарь"))
+                .displayName(plugin.getFormattedMessage("gui.inv.add_button.display_name"))
                 .onClick(event -> {
                     event.setCancelled(true);
                     String newInvName = "inv_" + System.currentTimeMillis();

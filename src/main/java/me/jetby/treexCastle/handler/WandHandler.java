@@ -27,7 +27,7 @@ public record WandHandler(TreexCastle plugin) implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         Block block = e.getClickedBlock();
-        ItemStack itemInHand = player.getItemInHand();
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
 
         if (block == null) return;
 

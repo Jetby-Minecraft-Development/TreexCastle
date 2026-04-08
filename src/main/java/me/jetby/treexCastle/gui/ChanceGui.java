@@ -48,7 +48,6 @@ public class ChanceGui extends AdvancedGui {
             wrapper.amount(item.getAmount());
             wrapper.slots(itemData.slot());
             wrapper.displayName(plugin.getFormattedMessage("gui.chance.item.display_name", "{chance}", String.valueOf(chance[0])));
-            wrapper.displayName(r("<#FB430A><bold>⭐ <white>Шанс: <gold>" + chance[0] + "%"));
             wrapper.lore(plugin.getFormattedMessageList("gui.chance.item.lore"));
             wrapper.onClick(event -> {
                 event.setCancelled(true);

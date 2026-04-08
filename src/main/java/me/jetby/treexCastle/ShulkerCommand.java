@@ -1,9 +1,8 @@
-package me.jetby.treexCastle.executor;
+package me.jetby.treexCastle;
 
 import me.jetby.libb.command.AdvancedCommand;
 import me.jetby.libb.command.annotations.PlayerOnly;
 import me.jetby.libb.command.annotations.SubCommand;
-import me.jetby.treexCastle.TreexCastle;
 import me.jetby.treexCastle.shulker.ShulkerType;
 import me.jetby.treexCastle.util.LocationHandler;
 import org.bukkit.Location;
