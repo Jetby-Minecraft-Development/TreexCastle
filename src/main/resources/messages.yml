@@ -1,1 +1,45 @@
 
+
+
+gui:
+  chance:
+    title: "<black>Настроить шансы"
+    item:
+      display_name: "<#FB430A><bold>⭐ <white>Шанс: <gold>{chance}%"
+      lore:
+        - "<#FB430A><bold><st>=<#FB4C0E><bold><st>                                   &m="
+        - ""
+        - "<#FB430A><bold>ЛКМ <gray>+<white>1% "
+        - "<#FB430A><bold>ПКМ <gray>-<white>1% "
+        - "<#FB430A><bold>SHIFT+ЛКМ <gray>+<white>10% "
+        - "<#FB430A><bold>SHIFT+ПКМ <gray>-<white>10% "
+        - ""
+        - "<#FB430A><bold><st>=<#FB4C0E><bold><st>                                   &m="
+
+  inv:
+    title: "<black>Выбор инвентаря"
+    inv_button:
+      display_name: "<#FB430A><bold>⭐ <white>Инвентарь: <yellow>{inv}"
+      lore:
+        - "<gold><bold><st>=                                   ="
+        - ""
+        - "<gold><bold>ЛКМ <gray>- <white>Настроить предметы "
+        - "<gold><bold>ПКМ <gray>- <white>Настроить шансы предметов "
+        - ""
+        - "<gold><bold><st>=                                   ="
+    add_button:
+      display_name: "<green>[+] Добавить новый инвентарь"
+
+  items:
+    title: "<black>Редактор предметов"
+
+  main:
+    title: "<black>TreexCastle"
+    type_button:
+      display_name: "<!i><#FB430A><bold>⭐</bold> <white>Шалкер: <yellow>{type}"
+      lore:
+        - "<!i><#FB430A><st>=                                   ="
+        - ""
+        - "<!i><#FB430A><b>▶</b> <white>Нажмите, чтобы настроить предметы"
+        - ""
+        - "<!i><#FB430A><st>=                                   ="

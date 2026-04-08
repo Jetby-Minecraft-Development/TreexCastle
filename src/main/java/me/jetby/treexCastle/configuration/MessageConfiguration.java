@@ -1,6 +1,5 @@
 package me.jetby.treexCastle.configuration;
 
-import me.jetby.libb.Libb;
 import me.jetby.treexCastle.TreexCastle;
 import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.file.FileConfiguration;

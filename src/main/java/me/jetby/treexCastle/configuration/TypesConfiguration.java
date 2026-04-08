@@ -71,6 +71,7 @@ public class TypesConfiguration {
 
         ConfigurationSection maskSection = config.getConfigurationSection("mask");
         boolean isMask = maskSection.getBoolean("enable", false);
+        int takeCooldown = maskSection.getInt("take-cooldown", 0);
 
         Map<String, Mask> maskMap = loadMask(maskSection.getConfigurationSection("items"));
 
@@ -108,6 +109,7 @@ public class TypesConfiguration {
                 lootAmount,
                 removeAfter,
                 isMask,
+                takeCooldown,
                 maskMap,
                 dropParticle,
                 spawnChance,

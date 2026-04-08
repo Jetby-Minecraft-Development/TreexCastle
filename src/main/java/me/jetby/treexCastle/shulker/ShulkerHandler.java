@@ -92,7 +92,9 @@ public record ShulkerHandler(@NotNull TreexCastle plugin) implements Listener {
         ShulkerType shulker = instance.getType();
 
         switch (shulker.lootDelivery()) {
-            case GUI -> handleTimer(player, instance, event, null);
+            case GUI -> handleTimer(player, instance, event, () -> {
+                instance.getSharedLootInventory().close();
+            });
             case FLYING -> handleFlying(player, instance, event);
             default -> handleDrop(player, instance, event);
         }

@@ -35,7 +35,7 @@ public final class TreexCastle extends LibbPlugin {
     private TreexCastlePlaceholderExpansion castlePlaceholders;
 
     public static final NamespacedKey WAND_KEY = new NamespacedKey("treexcastle", "wand");
-    public static final NamespacedKey FLYING_ITEM_KEY = new NamespacedKey("treexcastle", "flying_item");
+    public static final NamespacedKey ITEM_KEY = new NamespacedKey("treexcastle", "flying_item");
 
     public static TreexCastle INSTANCE;
 
@@ -45,7 +45,7 @@ public final class TreexCastle extends LibbPlugin {
 
         setBStats(this, 24879);
 
-        cfg =  new ConfigConfiguration(this, getFileConfiguration("config.yml"));
+        cfg = new ConfigConfiguration(this, getFileConfiguration("config.yml"));
         cfg.load();
 
         Bukkit.getScheduler().runTaskLater(this, () -> {
@@ -95,13 +95,14 @@ public final class TreexCastle extends LibbPlugin {
             ShulkerInstance instance = ctx.get(ShulkerInstance.class);
             if (s == null) return;
             String[] parts = s.split(" ");
-            try {
-                float power = Float.parseFloat(parts[0]);
-                boolean fire = Boolean.parseBoolean(parts[1]);
-                boolean breakBlocks = Boolean.parseBoolean(parts[2]);
-                instance.getLocation().getWorld().createExplosion(instance.getLocation(), power, fire, breakBlocks);
-            } catch (Exception ignored) {}
+            float power = 1;
+            boolean fire = false;
+            boolean breakBlocks = false;
+            try {power = Float.parseFloat(parts[0]);} catch (Exception ignored) {}
+            try {fire = Boolean.parseBoolean(parts[1]);} catch (Exception ignored) {}
+            try {breakBlocks = Boolean.parseBoolean(parts[2]);} catch (Exception ignored) {}
 
+            instance.getLocation().getWorld().createExplosion(instance.getLocation(), power, fire, breakBlocks);
 
         });
 

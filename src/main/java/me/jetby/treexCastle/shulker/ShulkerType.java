@@ -26,6 +26,7 @@ public record ShulkerType(String id,
                           String lootAmount,
                           int removeAfter,
                           boolean isMask,
+                          int takeCooldown,
                           Map<String, Mask> maskMap,
                           FlyingDropParticle dropParticle,
                           int spawnChance,
@@ -66,7 +67,10 @@ public record ShulkerType(String id,
         HoloUtil.create(buildHoloLines(holo, instance), holoLocation(holo, location), instance.getId().toString());
     }
     public void updateHologram(Holo holo, ShulkerInstance instance) {
-        if (!holo.enable()) return;
+        if (!holo.enable()) {
+            HoloUtil.remove(instance.getId().toString());
+            return;
+        }
         HoloUtil.update(buildHoloLines(holo, instance), holoLocation(holo, instance.getLocation()), instance.getId().toString());
     }
 

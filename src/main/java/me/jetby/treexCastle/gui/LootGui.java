@@ -4,6 +4,7 @@ import me.jetby.libb.Keys;
 import me.jetby.libb.gui.parser.ParseUtil;
 import me.jetby.libb.gui.parser.ParsedGui;
 import me.jetby.libb.util.Randomizer;
+import me.jetby.treexCastle.TreexCastle;
 import me.jetby.treexCastle.shulker.ShulkerInstance;
 import me.jetby.treexCastle.shulker.ShulkerManager;
 import me.jetby.treexCastle.shulker.ShulkerType;
@@ -14,13 +15,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
 public class LootGui extends ParsedGui {
+
+    private final Map<Integer, ItemStack> originalItems = new HashMap<>();
 
     public LootGui(@NotNull Player viewer, @NotNull FileConfiguration config, JavaPlugin plugin, ShulkerInstance instance) {
         super(viewer, config, plugin);
@@ -34,7 +39,6 @@ public class LootGui extends ParsedGui {
             return;
         }
 
-        Map<Integer, ItemStack> slotToOriginal = new HashMap<>();
         ShulkerType shulker = instance.getType();
 
         for (ItemStack item : instance.getLoot()) {
@@ -43,8 +47,9 @@ public class LootGui extends ParsedGui {
             lootSlots.remove(Integer.valueOf(slot));
 
             if (shulker.isMask() && !shulker.maskMap().isEmpty()) {
-                slotToOriginal.put(slot, item);
-                getInventory().setItem(slot, ShulkerManager.applyMask(shulker, item));
+                originalItems.put(slot, item);
+                ItemStack fakeItem = ShulkerManager.applyMask(shulker, item);
+                getInventory().setItem(slot, ShulkerManager.applyMask(shulker, fakeItem));
             } else {
                 getInventory().setItem(slot, item);
             }
@@ -58,16 +63,37 @@ public class LootGui extends ParsedGui {
             if (onClick != null) onClick.accept(event);
             event.setCancelled(false);
 
+            if (!(event.getClickedInventory() == instance.getSharedLootInventory())) return;
+            ItemStack item = event.getCurrentItem();
+            if (item == null) return;
+
+            Player player = (Player) event.getWhoClicked();
             int clickedSlot = event.getSlot();
-            if (slotToOriginal.containsKey(clickedSlot)) {
-                ItemStack original = slotToOriginal.get(clickedSlot).clone();
+
+            if (originalItems.containsKey(clickedSlot)) {
+
+                if (player.hasCooldown(item.getType())) {
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+            if (originalItems.containsKey(clickedSlot)) {
+
+                ItemStack original = getOriginalItem(clickedSlot);
+                if (original == null) return;
                 ItemMeta meta = original.getItemMeta();
                 if (meta != null) {
                     meta.getPersistentDataContainer().remove(Keys.GUI_ITEM);
                     original.setItemMeta(meta);
                 }
                 event.getInventory().setItem(clickedSlot, original);
-                slotToOriginal.remove(clickedSlot);
+                originalItems.remove(clickedSlot);
+
+                for (ItemStack fi : getFakeItems()) {
+                    if (fi != null) {
+                        player.setCooldown(fi.getType(), shulker.takeCooldown());
+                    }
+                }
             }
         });
 
@@ -85,5 +111,21 @@ public class LootGui extends ParsedGui {
         open(viewer);
     }
 
-}
 
+    @Nullable
+    private ItemStack getOriginalItem(int slot) {
+        return originalItems.get(slot);
+    }
+
+    private List<ItemStack> getFakeItems() {
+        List<ItemStack> fakes = new ArrayList<>();
+        for (ItemStack item : getInventory().getContents()) {
+            if (item != null && item.hasItemMeta() &&
+                    item.getItemMeta().getPersistentDataContainer().has(TreexCastle.ITEM_KEY)) {
+                fakes.add(item);
+            }
+        }
+        return fakes;
+    }
+
+}

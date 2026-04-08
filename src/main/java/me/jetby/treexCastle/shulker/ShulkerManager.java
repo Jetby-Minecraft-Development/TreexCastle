@@ -24,7 +24,6 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -168,7 +167,7 @@ public class ShulkerManager implements Listener {
                 }
 
                 meta.getPersistentDataContainer().set(
-                        TreexCastle.FLYING_ITEM_KEY,
+                        TreexCastle.ITEM_KEY,
                         PersistentDataType.STRING,
                         UUID.randomUUID().toString()
                 );
@@ -254,7 +253,7 @@ public class ShulkerManager implements Listener {
                 meta.addEnchant(Enchantment.KNOCKBACK, 1, true);
             }
             meta.getPersistentDataContainer().set(
-                    TreexCastle.FLYING_ITEM_KEY,
+                    TreexCastle.ITEM_KEY,
                     PersistentDataType.STRING,
                     UUID.randomUUID().toString()
             );

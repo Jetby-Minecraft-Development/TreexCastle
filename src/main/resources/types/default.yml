@@ -59,6 +59,10 @@ flying-drop-particle:
 
 mask:
   enable: true
+  # Анти спам
+  # Задержка перед тем как взять другой предмет
+  # Задержка в тиках, 20 тиков = 1 секунда
+  take-cooldown: 40 # РАБОТАЕТ ТОЛЬКО ДЛЯ GUI
   items:
     m1:
       material: COBWEB

@@ -38,7 +38,7 @@ public class InvGui extends AdvancedGui {
             int currentSlot = slot;
             setItem(inv + "_" + slot, ItemWrapper.builder(Material.CHEST)
                     .slots(currentSlot)
-                    .displayName(r("&#FB430A<bold>⭐ <white>Инвентарь: <yellow>" + inv))
+                    .displayName(r("<#FB430A><bold>⭐ <white>Инвентарь: <yellow>" + inv))
                     .lore(List.of(
                             r("<gold><bold><st>=                                   ="),
                             r(""),
