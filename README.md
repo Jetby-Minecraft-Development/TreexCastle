@@ -1,32 +1,30 @@
-**TreexCastle** - добавляет на ваш сервер ивент на замок. Суть ивента в том что на случайных установленных локациях появляется случайный из существующих шалкеров с его настройками. Этот шалкер нужно сломать пока его прочность не завершится, а если игрок сломает прочность блока то дропаются случайные ресурсы.
+**TreexCastle** — adds a castle event to your server. The idea of the event is that a random shulker box (chosen from the configured ones, with its settings) spawns at randomly selected preset locations. Players must break it down before its durability runs out — and if a player depletes the block's durability, random resources are dropped.
 
-------------
-Видео-обзор
+---
+
+Video overview
 https://youtu.be/HtZCLotI2fA?si=aMZuTvXgU7sqLNcl
 
-------------
+---
 
-Проблемы? Нужна помощь? → discord.gg/treexstudio
+Issues? Need help? → discord.gg/treexstudio
 
-**Преимущества:**
-- Полная кастомизация
-- Простая конфигурация
-- Настройка предметов через GUI (/shulker menu)
-- Поддержка PlaceholderAPI
+**Features:**
+- Full customization
+- Simple configuration
+- GUI Items, Flying Items, Drop items
+- Item setup via GUI (`/shulker menu`)
+- PlaceholderAPI support
 
-**Команды:** (permission: treexcastle.admin)
-- /shulker wand - Получить палку для сохранения/удаления локации
-- /shulker menu - Настроить предметы
-- /shulker reload - Перезагрузить конфигурацию
-- /shulker start - Принудительно запустить спавн блоков
-- /shulker stop - Принудительно остановить спавн блоков
+**Commands:** (permission: `treexcastle.admin`)
+- `/shulker wand` — Get a stick for saving/removing locations
+- `/shulker menu` — Configure items
+- `/shulker reload` — Reload the configuration
+- `/shulker start` — Force-start block spawning
+- `/shulker stop` — Force-stop block spawning
 
-**Конфигурация по умолчанию:**
-[config.yml](https://github.com/MrJetby/TreexCastle/blob/master/src/main/resources/config.yml "config.yml")
-[types/default.yml](https://github.com/MrJetby/TreexCastle/blob/master/src/main/resources/types/default.yml "types/default.yml")
-
-**Плейсхолдеры:**
-- Время до старта - **%treexcastle_time_to_start%**
-- Время до старта форматированный - **%treexcastle_time_to_start_string%**
+**Placeholders:**
+- Time until start — **%treexcastle_time_to_start%**
+- Time until start (formatted) — **%treexcastle_time_to_start_string%**
 
 [![](https://bstats.org/signatures/bukkit/TreexCastle.svg)](https://bstats.org/plugin/bukkit/TreexCastle/24879)
